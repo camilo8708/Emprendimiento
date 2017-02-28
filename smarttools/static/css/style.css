@@ -70,6 +70,9 @@ footer a:hover {
 
 #smarttools-index-bienvenida-container {
     background-image: url("/static/img/index-bienvenida.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
     background-size: cover;
     height: 80rem;
 }
