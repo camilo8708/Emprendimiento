@@ -1,0 +1,138 @@
+<div id="smarttools-index-productos-container" class="container-fluid text-center smarttools-index-section">
+    <h2>Listado de Concursos</h2>
+
+    <div class="container">
+        <table ng-table="tableConcursos">
+            <tr class="row">
+                <td class="col-md-3"  ng-repeat="item in $data">
+                    <a href="#concurso/[[ item.url ]]"> <img id="Concurso-photo" src="[[ item.foto ]]"> </a>
+
+                    <div class="smarttools-index-Concursoos-texto" >
+                        <h4 id="Concurso-name">Nombre : [[ item.nombre ]]</h4>
+                        <h4 id="Concurso-price">Url : [[ item.url ]]</h4>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#modal-add" ng-click="getEditConcurso(item.pk)"><i class="fa fa-pencil"></i></button>
+                        <button  class="btn btn-danger" data-toggle="modal" data-target="#modal-delete" ng-click="allowConcursoDelete(item.pk)"><i class="fa fa-trash"></i></button>
+                        </br>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+
+    <button class="btn btn-success" data-toggle="modal" data-target="#modal-add" ng-click="setMode('Agregar')" id="add-basket-form">
+        Agregar
+    </button>
+
+
+    <div class="modal fade" id="modal-add" tabindex="-1" role="dialog" aria-labelledby="modalAdd">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" ng-switch="">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title smarttools-encode-sans" id="modalAdd1" ng-show="mode=='Agregar'">Agregar Concurso</h3>
+                    <h3 class="modal-title smarttools-encode-sans" id="modalAdd2" ng-show="mode=='Actualizar'">Editar concurso</h3>
+                </div>
+                <form ng-submit="addEditConcurso()">
+                    <div class="modal-body text-left">
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" class="form-control" id="nombreC"
+                                   placeholder="e.g. Video Viral" ng-model="newConcurso.nombre">
+                        </div>
+
+                        <div>
+                            <label for="file">Imagen:</label>
+                            <input id="file" name="file" type="file" file />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="precio">Url:</label>
+                            <input type="text" class="form-control" id="url"
+                                   placeholder="concursoMayo" ng-model="newConcurso.url">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="fechaInicio">Fecha Inicio:</label>
+                            <input id="fechaInicio" type="datetime" class="form-control" uib-datepicker-popup ng-model="newConcurso.fechaInicio" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="Fecha en que el concurso iniciara." />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="fechaFin">Fecha Fin:</label>
+                            <input id="fechaFin" type="datetime" class="form-control" uib-datepicker-popup ng-model="newConcurso.fechaFin" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"  placeholder="Fecha en que el concurso finalizara."/>
+          <span class="input-group-btn">
+         <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descripcion">Descripción:</label>
+                            <input type="text" class="form-control" id="desc"
+                                   placeholder="Descripción del premio que ganará el mejor video" ng-model="newConcurso.descripcion">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-success" value="[[ mode ]]" id="submit-basket"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal delete-->
+<div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="modalDelete">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title smarttools-encode-sans" id="modalDelete">Eliminar Concurso</h3>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro que quieres eliminar esta Concurso de la plataforma?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-toggle="modal" data-target="#modal-delete">
+                    Cancelar
+                </button>
+                <button id="btn-modal-delete" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete"
+                        ng-click="deleteConcursoById()">Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal error -->
+<div class="modal fade" id="modal-error" tabindex="-1" role="dialog" aria-labelledby="modalError">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title smarttools-encode-sans" id="modalError">Vuelve a Intentarlo</h3>
+            </div>
+            <div class="modal-body">
+                <p ng-bind="errorMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-toggle="modal" data-target="#modal-error">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

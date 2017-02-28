@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="smarttools">
+<head>
+    <meta charset="UTF-8">
+    <title>Smarttools</title>
+
+    {# Cargar tag de librería #}
+    {% load bootstrap3 %}
+    {# Cargar CSS y JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {# Cargar archivos estáticos#}
+    {% load staticfiles %}
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+
+    <!-- Resources -->
+    <script type="text/javascript" language="javascript" src="{% static 'js/angular.min.js' %}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/angular-route.min.js' %}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/ng-table.min.js' %}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/jquery-1.12.0.min.js' %}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/math.min.js' %}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/aws-sdk-2.3.2.min.js' %}"></script>
+    <script type="text/javascript" language="javascript"
+            src="{% static 'js/ui-bootstrap/ui-bootstrap-1.2.5.min.js' %}"></script>
+    <script type="text/javascript" language="javascript"
+            src="{% static 'js/ui-bootstrap/ui-bootstrap-tpls-1.2.5.js' %}"></script>
+
+    <!-- Logic -->
+    <script type="text/javascript" language="javascript" src="{% static 'app/app.js' %}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/ctrl_session.js' %}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'js/ui-bootstrap-tpls-1.3.2.min.js' %}"></script>
+</head>
+<body>
+<!-- Barra de navegación-->
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="ctrl_session">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#inicio"><i class="fa fa-video-camera"></i> Smarttools</a>
+        </div>
+        <ul class="nav navbar-nav smarttools-left">
+            <li class=""><a href="/#/inicio">Inicio</a></li>
+        </ul>
+        <ul class="nav navbar-nav smarttools-right">
+            <li class=""><a href="/#/registro">Registrarse</a></li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% block content %}
+
+<div class="container" ng-controller="ctrl_session">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <form ng-submit="login()" class="form-horizontal">
+                <div class="form-group">
+                    <label class="form-control-label col-sm-1" for="correoElectronico">Usuario</label>
+                    <div class="col-sm-12">
+                        <input type="email" class="form-control" id="correoElectronico"
+                               placeholder="Correo Electrónico" ng-model="login.correoElectronico" required
+                               maxlength="50">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label col-sm-1" for="contrasenia">Contraseña</label>
+                    <div class="col-sm-12">
+                        <input type="password" class="form-control" id="contrasenia" placeholder="Contraseña"
+                               ng-model="login.contrasenia" required maxlength="15">
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <input type="submit" class="btn btn-default" value="Login" id="but-login">
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+</div>
+
+<!-- Modal error -->
+<div class="modal fade" id="modal-error" tabindex="-1" role="dialog" aria-labelledby="modalError">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title smarttools-encode-sans" id="modalError">Vuelve a Intentarlo</h3>
+            </div>
+            <div class="modal-body">
+                <p>El usuario o contraseña ingresado es incorrecto.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-toggle="modal" data-target="#modal-error">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+</body>
+</html>

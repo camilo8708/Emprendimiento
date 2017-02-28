@@ -1,0 +1,194 @@
+<div id="smarttools-index-productos-container" class="container-fluid text-center smarttools-index-section">
+
+    <div class="container">
+
+        <form>
+            <div class="modal-body text-left">
+
+                <table>
+                    <td>
+                        <h3>[[detalle.nombreConcurso ]]</h3>
+                        <img src="[[ detalle.foto]]" id="Concurso-photo"  >
+                    </td>
+
+                    <td class="row">
+
+                    <td class="col-md-3">
+                        <div class="form-group">
+
+                            <label for="fechai">Fecha Inicio :</label>
+                            <input type="date" class="form-control" id="fechai"
+                                   value="[[detalle.fechaInicio ]]" ng-readonly="true">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="creado">Creado Por  :</label>
+                            <input type="text" class="form-control" id="creado"
+                                   value="[[detalle.creadoPor ]]" ng-readonly="true">
+                        </div>
+
+                    </td>
+
+
+                    <td class="col-md-3">
+                        <div class="form-group">
+
+                            <label for="fechaf">Fecha Fin :</label>
+                            <input type="date" class="form-control" id="fechaf"
+                                   value="[[detalle.fechaFin ]]" ng-readonly="true">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descripcion">Descripción :</label>
+                            <input type="text" class="form-control" id="descripcion"
+                                   value="[[detalle.descripcion]]" ng-readonly="true">
+                        </div>
+
+                    </td>
+
+                    </td>
+                </table>
+            </div>
+        </form>
+
+
+    </div>
+
+
+
+
+
+
+
+    <div class="container">
+
+
+        <!-- videos -->
+        <div class="row" style="margin-top: 10px">
+            <div ng-if="videos.length > 0">
+                <div class="col-md-12">
+                    <table class="table table-hover" ng-table="tableVideos">
+                        <thead class="thead-inverse">
+                        <tr class="text-center">
+                            <th ng-show="isAdmin">Video Original</th>
+                            <th>Video</th>
+                            <th>Estado</th>
+                            <th>Subido por</th>
+                            <th>E-mail</th>
+                            <th>Descripción</th>
+                            <th>Fecha de Subida</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="text-center" ng-repeat="item in $data">
+                            <td ng-show="isAdmin"><div id="videoOrig[[item.id]]">[[item.video]]</div></td>
+                            <td><div id="video[[item.id]]">Video no disponible</div></td>
+                            <td>[[ item.estado]]</td>
+                            <td><div class="badge">[[ item.nombres ]] [[ item.apellidos ]]</div></td>
+                            <td>[[ item.correoElectronico ]]</td>
+                            <td>[[ item.descripcion ]]</td>
+                            <td>[[item.fechaRegistro | date:'yyyy/MM/dd - h:mm:ssa']]</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <p ng-if="!videos.length > 0">No hay videos para este concurso.</p>
+
+        </div>
+        <!-- /videos -->
+    </div>
+
+    <!-- modals -->
+
+
+    <button class="btn btn-success"  ng-click="abrirModalCargarVideo()" id="add-video" ng-if="isActive">
+        Cargar Video
+    </button>
+
+    <!-- Crear producto -->
+    <div class="container">
+        <div class="modal fade" id="modalCargarVideo" tabindex="-1" role="dialog" aria-labelledby="view" aria-hidden="true">
+            <div class="modal-dialog" style="width: 400px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">Cargar Video</h4>
+                    </div>
+
+                    <div class="modal-body text-left">
+                        <form name="formRegister" ng-submit="guardarVideo()">
+
+
+
+                            <div class="form-group">
+                                <label for="nombres">Nombres:</label>
+                                <input type="text" class="form-control" id="nombres"
+                                       placeholder="e.g. Juan Manuel" ng-model="newVideo.nombres">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="apellidos">Apellidos:</label>
+                                <input type="text" class="form-control" id="apellidos"
+                                       placeholder="e.g. Rodriguez Arias" ng-model="newVideo.apellidos">
+                            </div>
+
+                            <div>
+                                <label for="file">Video:</label>
+                                <input id="file" name="file" type="file" file />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="correoElectronico">Correo electrónico:</label>
+                                <input type="email" name="correoElectronico" class="form-control" id="correoElectronico"
+                                       placeholder="e.g. luisa-perez@ejemplo.com" ng-model="newVideo.correoElectronico">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="descripcion">Descripción:</label>
+                                <input type="text" class="form-control" id="desc"
+                                       placeholder="Descripción del premio que ganará el mejor video" ng-model="newVideo.desc">
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-default" value="Enviar Video" id="but-up-video">
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Crear producto -->
+
+    <!-- Modal confirmación -->
+    <div class="modal fade" id="modal-confir" tabindex="-1" role="dialog" aria-labelledby="modalError">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title smarttools-encode-sans" id="modalError">Envio Exitoso</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Hemos recibido tu video y los estamos
+                        procesado para que sea publicado. Tan pronto el video quede publicado en la página del
+                        concurso te notificaremos por email.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-toggle="modal" data-target="#modal-confir">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

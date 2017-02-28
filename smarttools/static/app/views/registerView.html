@@ -1,0 +1,55 @@
+<div class="container text-center smarttools-index-section">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 text-left">
+        <form name="formRegister" ng-submit="addEmpresa()">
+            <div class="form-group">
+                <label for="nombres">Nombres:</label>
+                <input type="text" class="form-control" id="nombres"
+                       placeholder="e.g. Luisa" ng-model="newEmpresa.nombres">
+            </div>
+            <div class="form-group">
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" class="form-control" id="apellidos"
+                       placeholder="e.g. Pérez" ng-model="newEmpresa.apellidos">
+            </div>
+            <div class="form-group">
+                <label for="correoElectronico">Correo electrónico:</label>
+                <input type="email" name="correoElectronico" class="form-control" id="correoElectronico"
+                       placeholder="e.g. luisa-perez@ejemplo.com" ng-model="newEmpresa.correoElectronico">
+            </div>
+            <div class="form-group">
+                <label for="contrasenia">Contraseña:</label>
+                <input type="password" class="form-control" id="contrasenia"
+                       placeholder="e.g. ********" ng-model="newEmpresa.contrasenia">
+            </div>
+            <div class="form-group">
+                <label for="contrasenia">Confirmar Contraseña:</label>
+                <input type="password" class="form-control" id="contraseniaCon"
+                       placeholder="e.g. ********" ng-model="newEmpresa.contraseniaCon">
+            </div>
+
+            <input type="submit" class="btn btn-default" value="Registrarse" id="but-register">
+        </form>
+    </div>
+
+    <!-- Modal error -->
+    <div class="modal fade" id="modal-error" tabindex="-1" role="dialog" aria-labelledby="modalError">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title smarttools-encode-sans" id="modalError">Vuelve a Intentarlo</h3>
+                </div>
+                <div class="modal-body">
+                    <p ng-bind="errorMessage"></p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-toggle="modal" data-target="#modal-error">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

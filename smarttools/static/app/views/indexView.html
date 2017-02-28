@@ -1,0 +1,68 @@
+<div id="smarttools-index-bienvenida-container" class="container-fluid text-center">
+    <div>
+        <h1 class="smarttools-logo"><i class="fa fa-video-camera"></i> SmartTools</h1>
+        <p>Tu portal ideal para crear concursos de video en tu empresa. </p>
+        <a ng-click="setServicios('true')" ng-show="!getServicios()">Nuestros Servicios</a>
+    </div>
+</div>
+
+<div class="container text-center smarttools-index-section" ng-show="getServicios()">
+    <h2>Servicios</h2>
+
+
+    <div class="row">
+        <div id="smarttools-index-servicios-c-container" class="col-md-12">
+            <div class="row">
+                <h3>Para Empresas:</h3>
+                <div class="col-md-4">
+                    <div class="smarttools-index-services-c-container img-circle">
+                        <i class="fa fa-bullhorn fa-5x"></i>
+                    </div>
+                    <h4>Concursos</h4>
+                    <p>Podrás crear concursos para que tus clientes participen. </p>
+                </div>
+                <div class="col-md-4">
+                    <div class="smarttools-index-services-c-container img-circle">
+                        <i class="fa fa-thumbs-up fa-5x"></i>
+                    </div>
+                    <h4>Url Unica</h4>
+                    <p>Tus concursos tendrán una Url única la cual podrá ser fácilmente compartida. </p>
+                </div>
+                <div class="col-md-4">
+                    <div class="smarttools-index-services-c-container img-circle">
+                        <i class="fa fa-user fa-5x"></i>
+                    </div>
+                    <h4>Registro Ágil</h4>
+                    <p>Regístrate en nuestra aplicación fácilmente y disfruta de nuestros beneficios </p>
+                </div>
+            </div>
+        </div>
+        <div id="smarttools-index-servicios-p-container" class="col-md-12">
+            <h3>Para Usuarios:</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="smarttools-index-services-p-container img-circle">
+                        <i class="fa fa-cloud-upload fa-5x"></i>
+                    </div>
+                    <h4>Sube Tus videos</h4>
+                    <p>Puedes subir tus videos y competir en el concurso que quieras.  </p>
+                </div>
+                <div class="col-md-4">
+                    <div class="smarttools-index-services-c-container img-circle">
+                        <i class="fa fa-film fa-5x"></i>
+                    </div>
+                    <h4>Reproductor de Video</h4>
+                    <p>Reproduce tus videos ágilmente sin gastar tantos datos, gracias a una excelente compresión. </p>
+                </div>
+                <div class="col-md-4">
+                    <div class="smarttools-index-services-p-container img-circle">
+                        <i class="fa fa-phone fa-5x"></i>
+                    </div>
+                    <h4>Disponible en todos los dispositivos</h4>
+                    <p>Sube tus videos desde tu computador o celular.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
