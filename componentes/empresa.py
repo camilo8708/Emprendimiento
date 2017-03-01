@@ -5,6 +5,8 @@ import json
 
 from datetime import datetime
 from django.http import HttpResponse
+
+from componentes.empleado import *
 from .models import Empresa
 
 
@@ -14,22 +16,27 @@ def crearEmpresa(request):
             nombres = request.POST['nombres']
             apellidos = request.POST['apellidos']
             correoElectronico = request.POST['correoElectronico']
+            telefono = request.POST['telefono']
             contrasenia = request.POST['contrasenia']
-            tipo = 'Empresa'
+            nombreEmpresa = request.POST['nombreEmpresa']
 
-            empresas = Empresa.objects.filter(correoElectronico=correoElectronico, tipo=tipo)
+            empresas = Empresa.objects.filter(nombre=nombreEmpresa)
 
             if len(empresas) > 0:
                 return HttpResponse("Otra Empresa ya se ha registrado con el mismo correo electrónico.",
                                     status=400)
 
-            empresa_nueva = Empresa(nombres=nombres, apellidos=apellidos, correoElectronico=correoElectronico,contrasenia=contrasenia, tipo=tipo, fechaRegistro=datetime.now())
+            if(existeEmpleado(correoElectronico)):
+                return HttpResponse("Otro Usuario ya se ha registrado con el mismo correo electrónico.",
+                                    status=400)
+
+            empresa_nueva = Empresa(nombre=nombreEmpresa, fechaRegistro=datetime.now())
             empresa_nueva.save()
+
+            crearEmpleado(nombres, apellidos, correoElectronico, telefono, contrasenia, "Admin", empresa_nueva.id)
+
             return HttpResponse(empresa_nueva.to_json(), content_type="application/json")
 
     except Exception as e:
         print e
         return HttpResponse(json.dumps(e.args), content_type="application/json", status=400)
-
-
-

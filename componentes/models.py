@@ -1,31 +1,30 @@
 from __future__ import unicode_literals
 
-from datetime import datetime
 from mongoengine import *
 
 # Cristian Huertas - 08-10-16:/Modelo Proyecto Smarttools
 
-#class Video(Document):
-#    idConcurso = ObjectIdField()
-#    video = StringField()
-#    videoMP4 = StringField()
-#    estado = StringField(max_length=30)
-#    nombres = StringField(max_length=50)
-#    apellidos = StringField(max_length=50)
-#    correoElectronico = EmailField(max_length=50)
-#    descripcion = StringField(max_length=1000)
-#    fechaRegistro = DateTimeField()
+class Video(Document):
+    idConcurso = ObjectIdField()
+    video = StringField()
+    videoMP4 = StringField()
+    estado = StringField(max_length=30)
+    nombres = StringField(max_length=50)
+    apellidos = StringField(max_length=50)
+    correoElectronico = EmailField(max_length=50)
+    descripcion = StringField(max_length=1000)
+    fechaRegistro = DateTimeField()
 
 
-#class Concurso(Document):
-#    idEmpresa = ObjectIdField()
-#    nombre = StringField(max_length=100)
-#    foto = StringField()
-#    url = StringField(max_length=30, unique=True)
-#    fechaRegistro = DateTimeField()
-#    fechaInicio = DateTimeField()
-#    fechaFin = DateTimeField()
-#    descripcion = StringField(max_length=1000)
+class Concurso(Document):
+    idEmpresa = ObjectIdField()
+    nombre = StringField(max_length=100)
+    foto = StringField()
+    url = StringField(max_length=30, unique=True)
+    fechaRegistro = DateTimeField()
+    fechaInicio = DateTimeField()
+    fechaFin = DateTimeField()
+    descripcion = StringField(max_length=1000)
 
 
 #class Empresa(Document):
@@ -39,16 +38,16 @@ from mongoengine import *
 # Cristian Huertas - 27-02-17:/Modelo Proyecto Emprendimiento
 class Empresa(Document):
     nombre = StringField(max_length=200)
-    correoElectronico = EmailField(max_length=50, unique=True)
-    telefono = IntField(min_value=0)
     fechaRegistro = DateTimeField()
 
 class Empleado(Document):
     correoElectronico = EmailField(max_length=50, unique=True)
+    contrasenia = StringField(max_length=20)
     nombre = StringField(max_length=50)
     apellido = StringField(max_length=50)
     rol = StringField(max_length=20)
     telefono = IntField(min_value=0)
+    fechaRegistro = DateTimeField()
     idEmpresa = ObjectIdField()
 
 class Cliente(Document):

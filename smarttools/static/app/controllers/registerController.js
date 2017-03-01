@@ -10,8 +10,9 @@ app.controller("registerController", function ($scope, $route, $routeParams, $lo
             $("#modal-error").modal("show");
         }
 
-        else  if ($scope.newEmpresa.nombres === undefined || $scope.newEmpresa.apellidos === undefined
-            || $scope.newEmpresa.correoElectronico === undefined || $scope.newEmpresa.contrasenia === undefined|| $scope.newEmpresa.contraseniaCon === undefined) {
+        else  if ($scope.newEmpresa.nombreEmpresa === undefined || $scope.newEmpresa.nombresEmpleado === undefined
+            || $scope.newEmpresa.apellidosEmpleado === undefined || $scope.newEmpresa.correoElectronico === undefined ||
+            $scope.newEmpresa.telefonoEmpleado === undefined || $scope.newEmpresa.contrasenia === undefined || $scope.newEmpresa.contraseniaCon === undefined) {
             send = false;
             $scope.errorMessage = "Debe ingresar información en todos los campos.";
             $("#modal-error").modal("show");
@@ -25,9 +26,11 @@ app.controller("registerController", function ($scope, $route, $routeParams, $lo
         }
         else {
             var fd = new FormData();
-            fd.append("nombres", $scope.newEmpresa.nombres);
-            fd.append("apellidos", $scope.newEmpresa.apellidos);
+            fd.append("nombreEmpresa", $scope.newEmpresa.nombreEmpresa);
+            fd.append("nombres", $scope.newEmpresa.nombresEmpleado);
+            fd.append("apellidos", $scope.newEmpresa.apellidosEmpleado);
             fd.append("correoElectronico", $scope.newEmpresa.correoElectronico);
+            fd.append("telefono", $scope.newEmpresa.telefonoEmpleado);
             fd.append("contrasenia", $scope.newEmpresa.contrasenia);
 
             if ($scope.file != undefined) {
