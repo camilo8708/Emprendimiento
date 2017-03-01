@@ -57,7 +57,7 @@ footer a:hover {
 }
 
 .navbar {
-    background-color: #ADD8E6;
+    background-color: #CCFFCC;
     font-family: EncodeSans !important;
     font-size: 1.8rem;
     color: black;
@@ -70,6 +70,9 @@ footer a:hover {
 
 #smarttools-index-bienvenida-container {
     background-image: url("/static/img/index-bienvenida.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     background-size: cover;
     height: 80rem;
 }
