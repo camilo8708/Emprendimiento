@@ -10,9 +10,10 @@ app.controller("registerController", function ($scope, $route, $routeParams, $lo
             $("#modal-error").modal("show");
         }
 
-        else  if ($scope.newEmpresa.nombreEmpresa === undefined || $scope.newEmpresa.nombresEmpleado === undefined
-            || $scope.newEmpresa.apellidosEmpleado === undefined || $scope.newEmpresa.correoElectronico === undefined ||
-            $scope.newEmpresa.telefonoEmpleado === undefined || $scope.newEmpresa.contrasenia === undefined || $scope.newEmpresa.contraseniaCon === undefined) {
+        else  if ($scope.newEmpresa.nombreEmpresa === undefined || $scope.newEmpresa.nombresEmpleado === undefined ||
+            $scope.newEmpresa.apellidosEmpleado === undefined || $scope.newEmpresa.correoElectronico === undefined ||
+            $scope.newEmpresa.telefonoEmpleado === undefined || $scope.newEmpresa.contrasenia === undefined ||
+            $scope.newEmpresa.contraseniaCon === undefined || $scope.file == undefined) {
             send = false;
             $scope.errorMessage = "Debe ingresar información en todos los campos.";
             $("#modal-error").modal("show");

@@ -45,7 +45,7 @@ class Empleado(Document):
     contrasenia = StringField(max_length=20)
     nombre = StringField(max_length=50)
     apellido = StringField(max_length=50)
-    rol = StringField(max_length=20)
+    tipo = StringField(max_length=20)
     telefono = IntField(min_value=0)
     fechaRegistro = DateTimeField()
     idEmpresa = ObjectIdField()

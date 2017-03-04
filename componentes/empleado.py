@@ -11,7 +11,7 @@ def existeEmpleado(email):
     return False
 
 def crearEmpleado(nombres, apellidos, correoElectronico, telefono, contrasenia, rol, idEmpresa):
-    empleado = Empleado(nombre=nombres, apellido=apellidos, correoElectronico=correoElectronico, rol=rol, telefono=telefono, fechaRegistro=datetime.now(), idEmpresa=idEmpresa)
+    empleado = Empleado(nombre=nombres, apellido=apellidos, correoElectronico=correoElectronico, rol=rol, telefono=telefono, fechaRegistro=datetime.now(), idEmpresa=idEmpresa, contrasenia=contrasenia)
     empleado.save()
 
 

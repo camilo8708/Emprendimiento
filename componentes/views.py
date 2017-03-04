@@ -4,7 +4,7 @@ import json
 import os, sys
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Empresa
+from .models import Empleado
 from django.conf import settings
 # Create your views here.
 from iron_cache import *
@@ -25,15 +25,15 @@ def login(request):
 def post_login(request):
     try:
         ip = get_client_ip(request)
-        empresa = Empresa.objects.get(correoElectronico=request.POST['correoElectronico'])
-        datos = {'id': str(empresa.id), 'rol': empresa.tipo}
-        if (empresa.contrasenia == request.POST['contrasenia']):
+        empleado = Empleado.objects.get(correoElectronico=request.POST['correoElectronico'].lower())
+        datos = {'id': str(empleado.id), 'rol': empleado.tipo}
+        if (empleado.contrasenia == request.POST['contrasenia']):
                 cache = IronCache()
                 cache.name= 'Smarttools'
                 item = cache.put(key=ip, value=json.dumps(datos))
                 return HttpResponse(json.dumps(datos), content_type="application/json", status=200)
         else:
-            return HttpResponse(json.dumps(empresa.correoElectronico + " " + empresa.contrasenia),
+            return HttpResponse(json.dumps(empleado.correoElectronico + " " + empleado.contrasenia),
                                 content_type="application/json", status=401)
     except Exception as e:
         print(e.message)
