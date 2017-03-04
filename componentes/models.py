@@ -39,6 +39,7 @@ class Concurso(Document):
 class Empresa(Document):
     nombre = StringField(max_length=200)
     fechaRegistro = DateTimeField()
+    logo = StringField()
 
 class Empleado(Document):
     correoElectronico = EmailField(max_length=50, unique=True)
@@ -51,7 +52,7 @@ class Empleado(Document):
     idEmpresa = ObjectIdField()
 
 class Cliente(Document):
-    EmailField(max_length=50, unique=True)
+    correoElectronico = EmailField(max_length=50)
     primerNombre = StringField(max_length=50)
     otrosNombre = StringField(max_length=50)
     primerApellido = StringField(max_length=50)
@@ -61,7 +62,7 @@ class Cliente(Document):
     telefonoPrincipal = StringField(max_length=20)
     telefonoSecundario = StringField(max_length=20)
     celular = StringField(max_length=20)
-    idEmpresa = ObjectIdField
+    idEmpresa = ObjectIdField()
 
 class Encuesta(Document):
     fechaEnvio = DateTimeField()
@@ -70,13 +71,13 @@ class Encuesta(Document):
     preguntaExperiencia = IntField(min_value=0, max_value=10)
     primerComentario = StringField(max_length=1000)
     SegundoComentario = StringField(max_length=1000)
-    idEstadoEncuesta = ObjectIdField()
+    estadoEncuesta = StringField(max_length=1000)
     idCliente = ObjectIdField()
-
-class EstadoEncuesta(Document):
-    nombre = StringField(max_length=20)
-    descripcion = StringField(max_length=20)
 
 class tipoId(Document):
     nombre = StringField(max_length=20)
     acronimo = StringField(max_length=2)
+
+class Parametro(Document):
+    seq = IntField(unique=True)
+    valor = StringField(max_length=14000)

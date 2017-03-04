@@ -3,9 +3,35 @@ import subprocess
 
 import boto3
 from django.core.files import File
+from datetime import datetime
 
-from componentes.models import Video, Concurso
+from componentes.models import Video, Concurso, Cliente, Empresa, Parametro, Encuesta
 from smarttools.celery import app
+
+
+@app.task(ignore_result=True)
+def enviarEncuesta(idCliente):
+    # Se carga la infromacion necesaria para el mensaje
+    cliente = Cliente.objects.get(id=idCliente)
+    empresa = Empresa.objects.get(id=cliente.idEmpresa)
+
+    # Se crea la encuesta para el cliente
+    encuesta = Encuesta(fechaEnvio=datetime.now(), estadoEncuesta='Enviada', idCliente=cliente.id)
+    encuesta.save()
+
+    # Se envia email de confirmacion
+    parametro = Parametro.objects.get(seq=1)
+    to = cliente.correoElectronico
+    asunto = 'Encuesta de ' + empresa.nombre.title()
+    mensaje = parametro.valor
+    mensaje = mensaje.replace('^', '"')
+    mensaje = mensaje.replace('**ruta_logo_empresa**', empresa.logo)
+    mensaje = mensaje.replace('**nombre_cliente**', cliente.primerNombre.title() + ' ' + cliente.primerApellido.title())
+    mensaje = mensaje.replace('**nombre_empresa**', empresa.nombre.title())
+    mensaje = mensaje.replace('**url_encuesta**', 'https://127.0.0.1:8000/encuesta/'+str(encuesta.id))
+    from componentes.mail import Mail
+    mail = Mail(to, asunto, mensaje)
+    mail.send()
 
 
 @app.task(ignore_result=True)

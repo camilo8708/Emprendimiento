@@ -37,11 +37,6 @@ def crearEmpresa(request):
                 return HttpResponse("Otro Usuario ya se ha registrado con el mismo correo electrónico.",
                                     status=400)
 
-            empresa_nueva = Empresa(nombre=nombreEmpresa, fechaRegistro=datetime.now())
-            empresa_nueva.save()
-
-            crearEmpleado(nombres, apellidos, correoElectronico, telefono, contrasenia, "Admin", empresa_nueva.id)
-
             if 'file' in request.FILES:
                 imgNombreOriginal = request.FILES['file'].name
                 imgExt = imgNombreOriginal[(imgNombreOriginal.rfind('.')): len(imgNombreOriginal)].lower()
@@ -49,6 +44,11 @@ def crearEmpresa(request):
                 s3.Bucket('emprendimiento-grupo6').put_object(Key='img/' + str(nombreEmpresa)+ imgExt, Body=request.FILES['file'])
             else:
                 foto = ''
+
+            empresa_nueva = Empresa(nombre=nombreEmpresa, fechaRegistro=datetime.now(), logo = foto)
+            empresa_nueva.save()
+
+            crearEmpleado(nombres, apellidos, correoElectronico, telefono, contrasenia, "Admin", empresa_nueva.id)
 
             return HttpResponse(empresa_nueva.to_json(), content_type="application/json")
 
