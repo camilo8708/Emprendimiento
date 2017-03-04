@@ -20,7 +20,7 @@ app.controller("concursoController", function ($scope, $http, sessionService, ng
     $scope.url = $routeParams.url;
 
     if ($routeParams.url != undefined) {
-        $http({method: "GET", url: "/encuesta/" + $routeParams.url, params: {idAdmin: sessionService.getUserId()}})
+        $http({method: "GET", url: "/encuesta/" + $routeParams.id, params: {idAdmin: sessionService.getUserId()}})
             .success(function (data, status) {
                 $scope.detalle = data;
 
