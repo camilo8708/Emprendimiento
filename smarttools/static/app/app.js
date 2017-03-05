@@ -33,9 +33,9 @@ var app = angular.module("smarttools", ["ngRoute", "ngTable", "ui.bootstrap"]).c
             controller: "registerController"
         })
 
-        .when("/lista_concurso", {
-            templateUrl: "/static/app/views/queryConcursoView.html",
-            controller: "concursoController"
+        .when("/dashboard", {
+            templateUrl: "/static/app/views/dashboardView.html",
+            controller: "dashboardController"
         })
 
         .when("/concurso/:url/:page", {

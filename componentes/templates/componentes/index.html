@@ -3,7 +3,7 @@
 <html lang="en" ng-app="smarttools">
 <head>
     <meta charset="UTF-8">
-    <title>Smarttools</title>
+    <title>CX-COL</title>
 
     {# Cargar tag de librería #}
     {% load bootstrap3 %}
@@ -32,6 +32,10 @@
     <script> jwplayer.key = "ioYOYaIYDawyg6opYrYGNI+/b71cJtPJP1DpCQ==";</script>
 
 
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
     <!-- Logic -->
     <script type="text/javascript" language="javascript" src="{% static 'app/app.js' %}"></script>
     <script type="text/javascript" language="javascript" src="{% static 'js/ng-image-compress.js' %}"></script>
@@ -44,6 +48,10 @@
             src="{% static 'app/controllers/exampleController.js' %}"></script>
     <script type="text/javascript" language="javascript"
             src="{% static 'app/controllers/encuestaController.js' %}"></script>
+    <script type="text/javascript" language="javascript"
+            src="{% static 'app/controllers/dashboardController.js' %}"></script>
+
+
 
 </head>
 <body>
@@ -55,7 +63,7 @@
         </div>
         <ul class="nav navbar-nav smarttools-left">
             <li class=""><a href="#inicio">Inicio</a></li>
-            <li><a class="" href="#lista_concurso" id="nav-products" ng-show="session.authenticated">Mis Concursos</a></li>
+            <li><a class="" href="#dashboard" id="nav-products" ng-show="session.authenticated">Mi Dashboard</a></li>
         </ul>
         <ul class="nav navbar-nav smarttools-right">
             <li class="" ng-show="!session.authenticated"><a href="/login_view" id="nav-login">Iniciar sesión</a></li>
