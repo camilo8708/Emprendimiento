@@ -18,5 +18,5 @@ class Mail:
         message.set_html(self.msg)
         message.set_text(self.msg)
         print self.msg
-        message.set_from('smarttools <smarttools@smarttools.com>')
+        message.set_from('cx-col <encuestas@cx-col.com>')
         print (sg.send(message))
