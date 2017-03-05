@@ -28,7 +28,7 @@ def enviarEncuesta(idCliente):
     mensaje = mensaje.replace('**ruta_logo_empresa**', empresa.logo)
     mensaje = mensaje.replace('**nombre_cliente**', cliente.primerNombre.title() + ' ' + cliente.primerApellido.title())
     mensaje = mensaje.replace('**nombre_empresa**', empresa.nombre.title())
-    mensaje = mensaje.replace('**url_encuesta**', 'https://127.0.0.1:8000/encuesta/'+str(encuesta.id))
+    mensaje = mensaje.replace('**url_encuesta**', 'https://cx-col.herokuapp.com/#/encuesta/'+str(encuesta.id))
     from componentes.mail import Mail
     mail = Mail(to, asunto, mensaje)
     mail.send()
