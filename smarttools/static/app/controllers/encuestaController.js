@@ -15,7 +15,7 @@ app.controller("encuestaController", function ($scope, $http, sessionService, ng
     $scope.rate = 7;
     $scope.max = 10;
     $scope.isReadonly = false;
-
+    $scope.dynamic = 2.5;
 
     if($routeParams.page == undefined || $routeParams.page < 1){
         $routeParams.page = 1
@@ -46,6 +46,10 @@ app.controller("encuestaController", function ($scope, $http, sessionService, ng
         {stateOn: 'glyphicon-heart'},
         {stateOff: 'glyphicon-off'}
     ];
+
+
+
+
 
 
 
