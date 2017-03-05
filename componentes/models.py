@@ -67,8 +67,8 @@ class Cliente(Document):
 class Encuesta(Document):
     fechaEnvio = DateTimeField()
     fechaRespuesta = DateTimeField()
-    preguntaRecomendacion = StringField(max_length=2)
-    preguntaExperiencia = IntField(min_value=0, max_value=10)
+    preguntaRecomendacion = IntField(min_value=0, max_value=10)
+    preguntaExperiencia = IntField(min_value=1, max_value=5)
     primerComentario = StringField(max_length=1000)
     SegundoComentario = StringField(max_length=1000)
     estadoEncuesta = StringField(max_length=1000)

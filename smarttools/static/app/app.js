@@ -53,6 +53,11 @@ var app = angular.module("smarttools", ["ngRoute", "ngTable", "ui.bootstrap"]).c
             controller: "concursoController"
         })
 
+        .when("/encuesta/:url", {
+            templateUrl: "/static/app/views/encuestaView.html",
+            controller: "encuestaController"
+        })
+
 
 
         .otherwise({redirectTo: "/inicio"});
