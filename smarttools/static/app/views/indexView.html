@@ -1,68 +1,169 @@
-<div id="smarttools-index-bienvenida-container" class="container-fluid text-center">
+<div id="smarttools-index-bienvenida-container" class="container-fluid text-center" uib-collapse="!B0">
     <div>
         <h1 class="smarttools-logo"><i class="fa fa-thumbs-up"></i> CX-COL</h1>
         <p>El portal ideal para mejorar la relación con tus clientes.</p>
-        <a ng-click="setServicios('true')" ng-show="!getServicios()">Nuestros Servicios</a>
+
+
+        <button class="btn btn-success"  ng-click="setServicios(1);" href="#/inicio/S1">
+            Quienes somos
+        </button>
+        <button class="btn btn-success"  ng-click="setServicios(2);"  href="#/inicio/S2">
+            Qué es NPS
+        </button>
+        <button class="btn btn-success"  ng-click="setServicios(3);" href="#/inicio/S3">
+            Nuestra solución
+        </button>
+        <button class="btn btn-success"  ng-click="setServicios(4);" href="#/inicio/S4">
+            Pruébanos
+        </button>
+        <button class="btn btn-success"  ng-click="setServicios(5);" href="#/inicio/S5">
+            Ayúdanos a Mejorar
+        </button>
+
+
     </div>
 </div>
 
-<div class="container text-center smarttools-index-section" ng-show="getServicios()">
+
+
+
+
+<div class="container text-center smarttools-index-section"  uib-collapse="B1" id="S1">
+    <h2>Quienes somos</h2>
+
+
+
+    <div class="container">
+        <table>
+
+            <tr class="row">
+                <td class="col-md-4">
+
+                    <h3>Quienes somos:</h3></br>
+                    <p align="justify">
+                        Nosotros somos una startup Colombiana con un objetivo principal el cual es facilitar a empresas que proveen bienes y/o servicios el análisis de la experiencia de los clientes  o  “Customer Experience”  a lo largo  de la relación con la empresa.
+                    </p>
+
+                </td>
+
+                <td class="col-md-4">
+                    <h3>¿Cómo lo hacemos?</h3></br>
+
+                    <p align="justify">
+                        Integrando NPS (Net Promoter Score) y múltiples canales digitales. Ponemos  al servicio de la empresas un plataforma totalmente online para gestionar las campañas de Customer Experience basadas en NPS desde principio a fin,  desde cualquier lugar y a cualquier hora tan solo con una conexión a internet. Toda la información maneja procesos automática y el cliente solo debe esperar a recibir sus datos analizados y tomar decisiones para mejorar y ofrecer un mejor servicio.
+                    </p>
+                </td>
+
+                <td class="col-md-4">
+                    <h3> Te haz preguntado:</h3></br>
+                    <p align="justify">
+                        ¿Te gustaría conocer la opinión de tus clientes?</br>
+                        Tus clientes son los que conocen más de tus productos y los aspectos a mejorar.</br>.</br>
+
+                        ¿Te interesa la satisfacción de tus clientes?</br>
+                        Con la opiniones de tus clientes puedes entender los puntos claves para potenciar tu negocio.</br>.</br>
+
+                        ¿Transformamos esas opiniones en calidad?</br>
+                        Con nuestra plataforma podrás tomar decisiones en tiempo real para transformar tus cliente detractores en promotores.</br>.</br>
+
+                        ¿Eres una empresa cuyo objetivo es mantener a tus clientes tan satisfechos que quieran?</br>
+                        Customer Experience más NPS podrás utilizar sus recomendaciones para entregar un mejor servicio.
+                    </p>
+                </td>
+
+            </tr>
+
+        </table>
+
+        <table align="center">
+
+        </table>
+    </div>
+
+</div>
+
+<div class="container text-center smarttools-index-section"  uib-collapse="B2" id="S2">
+    <h2>Qué es NPS</h2>
+
+    <div class="container">
+        <table>
+
+            <tr class="row">
+
+                <p align="justify">
+                    Es más que una encuesta, es una herramienta muy simple que propone medir la lealtad de los clientes de una empresa basándose en las recomendaciones. se basa  en un simple pregunta para identificar la fidelidad de tus clientes frente a tus productos o servicios.
+                </p></br>
+                <p align="center">
+                    <b> ¿Cuán probable es que recomiende el producto o servicio a un familiar o amigo?</b>
+                </p>
+
+
+            </tr>
+
+            <tr class="row">
+
+                <h3> Esta identificación nos llevará a categorizar a tus clientes de las siguiente forma: </h3></br>
+
+
+                <td class="col-md-7">
+                    <img src="/static/img/promo.png" width="650" height="400" >
+                </td>
+
+                <td class="col-md-7">
+                    <ul>
+                        <li> <p align="left">Promotores activos: Recomendará tus productos o servicios a sus círculo social o familiar.</p></li>
+                        <li><p align="left">Promotores pasivos: Puede que se mantengan o puede que se vayan a la competencia.</p><</li>
+                        <li><p align="left">Detractores: Clientes que muestran descontento, ellos probablemente no recomendarán a la empresa</p></li>
+                    </ul>
+                </td>
+
+            </tr>
+
+
+
+        </table>
+
+        <table align="center">
+           <tr class="row">
+                <h3> Conocer el grado NPS</h3></br>
+                Es valor neto entre los promotores y detractores. Esto nos da un valor entre los promotores y los detractores.
+            </tr>
+
+        </table>
+    </div>
+
+</div>
+
+<div class="container text-center smarttools-index-section"  uib-collapse="B3" id="S3">
     <h2>Servicios</h2>
 
-
-    <div class="row">
-        <div id="smarttools-index-servicios-c-container" class="col-md-12">
-            <div class="row">
-                <h3>Para Empresas:</h3>
-                <div class="col-md-4">
-                    <div class="smarttools-index-services-c-container img-circle">
-                        <i class="fa fa-bullhorn fa-5x"></i>
-                    </div>
-                    <h4>Concursos</h4>
-                    <p>Podrás crear concursos para que tus clientes participen. </p>
-                </div>
-                <div class="col-md-4">
-                    <div class="smarttools-index-services-c-container img-circle">
-                        <i class="fa fa-thumbs-up fa-5x"></i>
-                    </div>
-                    <h4>Url Unica</h4>
-                    <p>Tus concursos tendrán una Url única la cual podrá ser fácilmente compartida. </p>
-                </div>
-                <div class="col-md-4">
-                    <div class="smarttools-index-services-c-container img-circle">
-                        <i class="fa fa-user fa-5x"></i>
-                    </div>
-                    <h4>Registro Ágil</h4>
-                    <p>Regístrate en nuestra aplicación fácilmente y disfruta de nuestros beneficios </p>
-                </div>
-            </div>
-        </div>
-        <div id="smarttools-index-servicios-p-container" class="col-md-12">
-            <h3>Para Usuarios:</h3>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="smarttools-index-services-p-container img-circle">
-                        <i class="fa fa-cloud-upload fa-5x"></i>
-                    </div>
-                    <h4>Sube Tus videos</h4>
-                    <p>Puedes subir tus videos y competir en el concurso que quieras.  </p>
-                </div>
-                <div class="col-md-4">
-                    <div class="smarttools-index-services-c-container img-circle">
-                        <i class="fa fa-film fa-5x"></i>
-                    </div>
-                    <h4>Reproductor de Video</h4>
-                    <p>Reproduce tus videos ágilmente sin gastar tantos datos, gracias a una excelente compresión. </p>
-                </div>
-                <div class="col-md-4">
-                    <div class="smarttools-index-services-p-container img-circle">
-                        <i class="fa fa-phone fa-5x"></i>
-                    </div>
-                    <h4>Disponible en todos los dispositivos</h4>
-                    <p>Sube tus videos desde tu computador o celular.</p>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
+<div class="container text-center smarttools-index-section"  uib-collapse="B4" id="S4">
+    <h2>Pruébanos</h2>
+
+</div>
+
+<div class="container text-center smarttools-index-section"  uib-collapse="B5" id="S5">
+    <h2>Ayúdanos a Mejorar</h2>
+
+</div>
+
+<div align="center" uib-collapse="B0">
+
+    <button class="btn btn-success"  ng-click="setServicios(1);" href="#/inicio/S1">
+        Quienes somos
+    </button>
+    <button class="btn btn-success"  ng-click="setServicios(2);"  href="#/inicio/S2">
+        Qué es NPS
+    </button>
+    <button class="btn btn-success"  ng-click="setServicios(3);" href="#/inicio/S3">
+        Nuestra solución
+    </button>
+    <button class="btn btn-success"  ng-click="setServicios(4);" href="#/inicio/S4">
+        Pruébanos
+    </button>
+    <button class="btn btn-success"  ng-click="setServicios(5);" href="#/inicio/S5">
+        Ayúdanos a Mejorar
+    </button>
+</div>
