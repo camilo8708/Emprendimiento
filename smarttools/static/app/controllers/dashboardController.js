@@ -96,7 +96,7 @@ app.controller("dashboardController", function ($scope, $http, sessionService, n
         type: 'area'
     },
     title: {
-        text: 'Crecimiento Historio NPS'
+        text: 'Crecimiento Histório NPS'
     },
     subtitle: {
         text: ''

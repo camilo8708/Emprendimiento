@@ -18,7 +18,7 @@ def encuesta(request, id):
             response_encuesta_tmp = {}
             response_encuesta_tmp['id'] = str(encuesta.id)
             response_encuesta_tmp['fechaEnvio'] = str(encuesta.fechaEnvio.strftime('%Y/%m/%d'))
-            response_encuesta_tmp['fechaRespuesta'] = str(encuesta.fechaRespuesta.strftime('%Y/%m/%d'))
+            #response_encuesta_tmp['fechaRespuesta'] = str(encuesta.fechaRespuesta.strftime('%Y/%m/%d'))
             response_encuesta_tmp['preguntaExperiencia'] = encuesta.preguntaExperiencia
             response_encuesta_tmp['primerComentario'] = encuesta.primerComentario
             response_encuesta_tmp['SegundoComentario'] = encuesta.SegundoComentario
