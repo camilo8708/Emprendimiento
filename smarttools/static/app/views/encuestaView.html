@@ -9,64 +9,83 @@
 
                 <uib-progressbar max="max" value="dynamic"><span style="color:white; white-space:nowrap;">[[dynamic * 10]] / [[max * 10]]</span></uib-progressbar>
 
+                <div ng-if="[[detalle.estadoEncuesta]]=='Pendiente'">
+                    <div align="center" ng-if="[[dynamic]]==2.5">
+                        <h3>¿Que tan dispuesto estarías en recomendar a [[detalle.nombreEmpresa ]] a un amigo o familiar?
+                        </h3>
 
-                <div align="center">
-                    <h3>¿Que tan dispuesto estarías en recomendar a [[detalle.nombreEmpresa ]] a un amigo o familiar?
-                    </h3>
+                        <h3> <span uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
 
-                    <h3> <span uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
+                        </h3>
 
-                    </h3>
+                        <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<80, 'label-success': percent>=80}" ng-show="overStar && !isReadonly">[[percent]]%</span>
 
-                    <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<80, 'label-success': percent>=80}" ng-show="overStar && !isReadonly">[[percent]]%</span>
+                        <pre style="margin:15px 0;">Calificación: <b>[[rate]]</b><b ng-if="[[rate]]<6"> Nada Dispuesto</b><b ng-if="[[rate]]>5 && [[rate]]<8 " > Parcialmente Dispuesto</b><b ng-if="[[rate]]>7"> Muy Dispuesto</b></pre>
 
-                    <pre style="margin:15px 0;">Calificación: <b>[[rate]]</b><b ng-if="[[rate]]<6"> Nada Dispuesto</b><b ng-if="[[rate]]>5 && [[rate]]<8 " > Parcialmente Dispuesto</b><b ng-if="[[rate]]>7"> Muy Dispuesto</b></pre>
-
-                </div>
-
-
-                <div align="center">
-                    <h3> Por favor cuéntanos como impacto tu última experiencia con nosotros tus ganas de recomendarnos:
-
-                    </h3>
-
-                    <uib-tabset active="activePill" vertical="true" type="pills">
-                        <uib-tab index="0" heading="Incremento mucho"></uib-tab>
-                        <uib-tab index="1" heading="Incremento poco"></uib-tab>
-                        <uib-tab index="2" heading="No cambio"></uib-tab>
-                        <uib-tab index="3" heading="Disminuyo poco"></uib-tab>
-                        <uib-tab index="4" heading="Disminuyo mucho"></uib-tab>
-                    </uib-tabset>
+                    </div>
 
 
-                </div>
+                    <div align="center" ng-if="[[dynamic]]==5">
+                        <h3> Por favor cuéntanos como impacto tu última experiencia con nosotros tus ganas de recomendarnos:
+
+                        </h3>
+
+                        <uib-tabset active="activePill" vertical="true" type="pills">
+                            <uib-tab index="0" heading="Incremento mucho"></uib-tab>
+                            <uib-tab index="1" heading="Incremento poco"></uib-tab>
+                            <uib-tab index="2" heading="No cambio"></uib-tab>
+                            <uib-tab index="3" heading="Disminuyo poco"></uib-tab>
+                            <uib-tab index="4" heading="Disminuyo mucho"></uib-tab>
+                        </uib-tabset>
 
 
-                <div>
-                    <h3> ¿Por qué? </h3>
-                    <div class="form-group">
+                    </div>
+
+
+                    <div ng-if="[[dynamic]]==7.5">
+                        <h3> ¿Por qué? </h3>
+                        <div class="form-group">
 
                             <textarea name="Text1" class="form-control"  rows="5"></textarea>
+                        </div>
+
                     </div>
 
-                </div>
+                    <div ng-if="[[dynamic]]==10">
+                        <h3> ¿Qué podemos hacer para brindarte un mejor servicio?</h3>
+                        <div class="form-group">
 
-                <div>
-                    <h3> ¿Qué podemos hacer para brindarte un mejor servicio?</h3>
-                    <div class="form-group">
+                            <textarea name="Text2" class="form-control"  rows="5"></textarea>
+                        </div>
 
-                        <textarea name="Text2" class="form-control"  rows="5"></textarea>
                     </div>
 
+
+                    <div align="center">
+                        <button class="btn btn-success"  ng-click="nextStep();" id="next" >
+                            <div ng-if="[[dynamic]]<=7.5">Siguiente</div> <div ng-if="[[dynamic]]>7.5">Finalizar</div>
+                        </button>
+                    </div>
                 </div>
 
+                <div ng-if="[[detalle.estadoEncuesta]]=='Finalizada'">
+
+                    <h3 align="center">Tu opinión es muy importante para nosotros, muchas gracias por tomarte unos minutos de tu tiempo y permitirnos escuchar tu voz, ahora trabajaremos para poder mejorar nuestros servicios gracias a tus comentarios.
+                    </h3>
+
+                    <div class="row">
+                        <div class="col-md-4" align="center"></div>
+                        <div class="col-md-4" align="center">
+                            <i class="fa fa-thumbs-up fa-5x"></i>
+                            <h3 align="center">Nuevamente Gracias por ser una parte de nosotros.</h3>
+                        </div>
+
+                    </div>
 
 
-
+                </div>
 
             </div>
-
-
 
 
         </form>

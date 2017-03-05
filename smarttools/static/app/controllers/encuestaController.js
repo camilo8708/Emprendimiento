@@ -48,8 +48,16 @@ app.controller("encuestaController", function ($scope, $http, sessionService, ng
     ];
 
 
+    $scope.nextStep = function() {
+        if($scope.dynamic<10)
+            $scope.dynamic = $scope.dynamic + 2.5;
+        else if ($scope.dynamic==10)
+            $scope.detalle.estadoEncuesta='Finalizada'
+        else{
 
+        }
 
+    };
 
 
 
