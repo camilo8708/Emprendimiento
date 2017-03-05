@@ -41,6 +41,8 @@
     <script type="text/javascript" language="javascript"
             src="{% static 'app/controllers/concursoController.js' %}"></script>
     <script type="text/javascript" language="javascript"
+            src="{% static 'app/controllers/cargueController.js' %}"></script>
+    <script type="text/javascript" language="javascript"
             src="{% static 'app/controllers/exampleController.js' %}"></script>
 
 </head>
@@ -53,7 +55,7 @@
         </div>
         <ul class="nav navbar-nav smarttools-left">
             <li class=""><a href="#inicio">Inicio</a></li>
-            <li><a class="" href="#lista_concurso" id="nav-products" ng-show="session.authenticated">Mis Concursos</a></li>
+            <li><a class="" href="#cargue_clientes" id="nav-products" ng-show="session.authenticated">Envío Encuestas</a></li>
         </ul>
         <ul class="nav navbar-nav smarttools-right">
             <li class="" ng-show="!session.authenticated"><a href="/login_view" id="nav-login">Iniciar sesión</a></li>

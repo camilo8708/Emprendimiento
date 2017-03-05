@@ -38,6 +38,11 @@ var app = angular.module("smarttools", ["ngRoute", "ngTable", "ui.bootstrap"]).c
             controller: "concursoController"
         })
 
+        .when("/cargue_clientes", {
+            templateUrl: "/static/app/views/cargueClientes.html",
+            controller: "cargueController"
+        })
+
         .when("/concurso/:url/:page", {
             templateUrl: "/static/app/views/concursoView.html",
             controller: "concursoController"

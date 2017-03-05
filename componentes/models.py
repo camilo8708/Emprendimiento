@@ -57,7 +57,7 @@ class Cliente(Document):
     otrosNombre = StringField(max_length=50)
     primerApellido = StringField(max_length=50)
     segundoApellido = StringField(max_length=50)
-    tipoIdentificacion = ObjectIdField()
+    tipoIdentificacion = StringField(max_length=20)
     numeroIdentificacion = StringField(max_length=10)
     telefonoPrincipal = StringField(max_length=20)
     telefonoSecundario = StringField(max_length=20)

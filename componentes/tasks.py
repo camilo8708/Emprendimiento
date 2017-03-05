@@ -16,7 +16,7 @@ def enviarEncuesta(idCliente):
     empresa = Empresa.objects.get(id=cliente.idEmpresa)
 
     # Se crea la encuesta para el cliente
-    encuesta = Encuesta(fechaEnvio=datetime.now(), estadoEncuesta='Enviada', idCliente=cliente.id)
+    encuesta = Encuesta(fechaEnvio=datetime.now(), estadoEncuesta='Pendiente', idCliente=cliente.id)
     encuesta.save()
 
     # Se envia email de confirmacion

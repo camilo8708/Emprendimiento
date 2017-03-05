@@ -1,0 +1,124 @@
+<div id="smarttools-index-productos-container" class="container-fluid text-center smarttools-index-section">
+    <div class="container">
+        <form>
+            <div class="container text-center ">
+                <h3>Cargue de Clientes para Envío de Encuestas</h3>
+            </div>
+            <div class="modal-body text-left">
+                <div class="row">
+                    <div class="col-lg-4 col-lg-offset-4">
+                        <div class="input-group">
+                            <input type="file" file-reader="fileContent" accept=".csv"/>
+                            <br>
+                            <div class="col-lg-4 col-lg-offset-4">
+                                <button ng-if="clientes.length > 0" class="btn btn-success"  ng-click="enviarEncuestas()" id="enviar-encuestas"
+                                    data-toggle="tooltip" title="Se enviaran solo los registros correctos">
+                                    Enviar Encuestas
+                                </button>
+                                <br><br>
+                                <button class="btn btn-success"  ng-click="cargueClientes()" id="cargar-clientes" >
+                                    Cargar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Lista de Clientes cargados -->
+    <div class="container">
+        <div class="row" style="margin-top: 10px">
+            <div>
+                <div class="col-md-12">
+                    <table class="table table-hover" ng-table="tableVideos">
+                        <thead class="thead-inverse">
+                        <tr class="text-center">
+                            <th>Primer Nombre</th>
+                            <th>Segundo Nombre</th>
+                            <th>Primer Apellido</th>
+                            <th>Segundo Apellido</th>
+                            <th>E-mail</th>
+                            <th>Tipo Identificación</th>
+                            <th>Número de Identificación</th>
+                            <th>Teléfono Principal</th>
+                            <th>Teléfono Secundario</th>
+                            <th>Celular</th>
+                            <th>Estado</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="text-center" ng-repeat="item in clientes">
+                            <td><div class="badge">[[item.nombre1]]</div></td>
+                            <td>[[item.nombre2 ]]</td>
+                            <td>[[ item.appelido1 ]]</td>
+                            <td>[[ item.appelido2 ]]</td>
+                            <td>[[ item.correo ]]</td>
+                            <td>[[ item.tipoIdenti ]]</td>
+                            <td>[[item.identi ]]</td>
+                            <td>[[ item.telefono1 ]]</td>
+                            <td>[[ item.telefono2 ]]</td>
+                            <td>[[ item.celular ]]</td>
+                            <th ng-show="!item.error"><span class="label label-success">Registro Correcto</span></th>
+                            <th ng-show="item.error">
+                                <span class="label label-warning"
+                                      data-toggle="tooltip" title="[[item.msg]]">
+                                    Error Datos
+                                </span>
+                            </th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <p ng-if="!clientes.length > 0">Por favor cargar un archivo CSV con la misma estructura de la tabla.</p>
+
+        </div>
+        <!-- /clientes -->
+    </div>
+
+    <!-- modals -->
+    <!-- Modal error -->
+    <div class="modal fade" id="modal-error" tabindex="-1" role="dialog" aria-labelledby="modalError">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title smarttools-encode-sans" id="modalError">Vuelve a Intentarlo</h3>
+                </div>
+                <div class="modal-body">
+                    <p ng-bind="errorMessage"></p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-toggle="modal" data-target="#modal-error">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal confirmación -->
+    <div class="modal fade" id="modal-confir" tabindex="-1" role="dialog" aria-labelledby="modalError">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title smarttools-encode-sans" id="modalError">Envio Exitoso</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Hemos recibido tu información, se procederá a enviar los correos electrónicos para diligenciar las encuestas.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-toggle="modal" data-target="#modal-confir">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
