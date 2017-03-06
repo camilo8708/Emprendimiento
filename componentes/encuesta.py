@@ -10,6 +10,13 @@ def encuesta(request, id):
     data = {}
     if request.method == "GET":
         try:
+
+            if id == 'cx':
+                encuesta_nueva = Encuesta(fechaEnvio=datetime.now(), fechaRespuesta=datetime.now(), preguntaRecomendacion=1, preguntaExperiencia=1,
+                           primerComentario='', SegundoComentario='', estadoEncuesta = 'Pendiente', idCliente='58bad5bb30a4cf266045733f')
+                encuesta_nueva.save()
+                id= encuesta_nueva.id
+
             isAdmin = False
             encuesta = Encuesta.objects.get(id=id)
             cliente = Cliente.objects.get(id=encuesta.idCliente)
