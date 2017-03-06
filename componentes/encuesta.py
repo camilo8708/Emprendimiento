@@ -39,3 +39,28 @@ def encuesta(request, id):
             return HttpResponse(json.dumps(e.args), content_type="application/json", status=400)
 
     return HttpResponse(json.dumps(data), content_type='application/json; charset=UTF-8')
+
+
+def actualizarEncuesta(request):
+    if request.method == 'POST':
+        try:
+            idEncuesta = request.POST['idEncuesta']
+            preguntaRecomendacion = request.POST['preguntaRecomendacion']
+            preguntaExperiencia = request.POST['preguntaExperiencia']
+            primerComentario = request.POST['primerComentario']
+            SegundoComentario = request.POST['SegundoComentario']
+
+            encuesta = Encuesta.objects.get(id=idEncuesta)
+            encuesta.preguntaRecomendacion = int(preguntaRecomendacion)
+            encuesta.preguntaExperiencia = int(preguntaExperiencia)
+            encuesta.primerComentario = primerComentario
+            encuesta.SegundoComentario = SegundoComentario
+            encuesta.fechaRespuesta = datetime.now()
+            encuesta.estadoEncuesta = "Finalizado"
+            encuesta.save()
+
+            return HttpResponse(encuesta.to_json(), content_type="application/json")
+
+        except Exception as e:
+            print e
+            return HttpResponse(json.dumps(e.args), content_type="application/json", status=400)

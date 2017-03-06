@@ -51,16 +51,31 @@ app.controller("encuestaController", function ($scope, $http, sessionService, ng
     $scope.nextStep = function() {
         if($scope.dynamic<10)
             $scope.dynamic = $scope.dynamic + 2.5;
-        else if ($scope.dynamic==10)
-            $scope.detalle.estadoEncuesta='Finalizada'
+        else if ($scope.dynamic==10) {
+            // Se guarda las respuestas
+            var fd = new FormData();
+            fd.append("idEncuesta", $scope.url);
+            fd.append("preguntaRecomendacion", $scope.overStar);
+            fd.append("preguntaExperiencia", "3");
+            fd.append("primerComentario", "pregunta1");
+            fd.append("SegundoComentario", "pregunta2");
+
+            $http.post("/encuesta/", fd, {
+                withCredentials: true,
+                headers: {"Content-Type": undefined},
+                transformRequest: angular.identity
+            }).success(function () {
+                $scope.detalle.estadoEncuesta = 'Finalizada';
+            }).error(function (e) {
+                $scope.errorMessage = e;
+                $("#modal-error").modal("show");
+            });
+        }
         else{
 
         }
 
     };
-
-
-
 });
 
 

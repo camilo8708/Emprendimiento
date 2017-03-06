@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^login/c/', views.clear_session_data, name='clear_session_data'),
     url(r'^concurso/(?P<url>\w+)/$', concurso.concurso, name='concurso'),
     url(r'^encuesta/(?P<id>[\w\-]+)/$', encuesta.encuesta, name='encuesta'),
+    url(r'^encuesta/$', encuesta.actualizarEncuesta, name='actualizarEncuesta'),
     url(r'^concursos/util/(?P<id>\w+)/$', concurso.utilConcursoById, name='concursoUtil'),
     url(r'^concursos/u/$', concurso.updateConcurso, name="updateConcurso"),
     url(r'^concursos/(?P<id>\w+)/$', concurso.queryConcursosByEmpresa, name='concurso'),
