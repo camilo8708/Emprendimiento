@@ -16,6 +16,9 @@ app.controller("encuestaController", function ($scope, $http, sessionService, ng
     $scope.max = 10;
     $scope.isReadonly = false;
     $scope.dynamic = 2.5;
+    $scope.recomendacion = 5;
+    $scope.text1 = "";
+    $scope.text2 = "";
 
     if($routeParams.page == undefined || $routeParams.page < 1){
         $routeParams.page = 1
@@ -39,6 +42,10 @@ app.controller("encuestaController", function ($scope, $http, sessionService, ng
         $scope.percent = 100 * (value / $scope.max);
     };
 
+    $scope.selecion = function(value) {
+        $scope.recomendacion = value;
+    }
+
     $scope.ratingStates = [
         {stateOn: 'glyphicon-ok-sign', stateOff: 'glyphicon-ok-circle'},
         {stateOn: 'glyphicon-star', stateOff: 'glyphicon-star-empty'},
@@ -47,18 +54,25 @@ app.controller("encuestaController", function ($scope, $http, sessionService, ng
         {stateOff: 'glyphicon-off'}
     ];
 
-
     $scope.nextStep = function() {
         if($scope.dynamic<10)
             $scope.dynamic = $scope.dynamic + 2.5;
+            if($("#Text1").val() != undefined){
+                $scope.text1 = $("#Text1").val();
+            }
+
+            if($("#Text2").val() != undefined){
+                $scope.text2 = $("#Text2").val();
+            }
+
         else if ($scope.dynamic==10) {
             // Se guarda las respuestas
             var fd = new FormData();
             fd.append("idEncuesta", $scope.url);
             fd.append("preguntaRecomendacion", $scope.overStar);
-            fd.append("preguntaExperiencia", "3");
-            fd.append("primerComentario", "pregunta1");
-            fd.append("SegundoComentario", "pregunta2");
+            fd.append("preguntaExperiencia", $scope.recomendacion);
+            fd.append("primerComentario", $scope.text1);
+            fd.append("SegundoComentario", $scope.text2);
 
             $http.post("/encuesta/", fd, {
                 withCredentials: true,
@@ -77,6 +91,3 @@ app.controller("encuestaController", function ($scope, $http, sessionService, ng
 
     };
 });
-
-
-
