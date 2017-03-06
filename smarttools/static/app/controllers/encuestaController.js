@@ -66,7 +66,7 @@ app.controller("encuestaController", function ($scope, $http, sessionService, ng
             }
             // Se guarda las respuestas
             var fd = new FormData();
-            fd.append("idEncuesta", $scope.url);
+            fd.append("idEncuesta", $scope.detalle.id);
             fd.append("preguntaRecomendacion", $scope.overStar);
             fd.append("preguntaExperiencia", $scope.recomendacion);
             fd.append("primerComentario", $scope.text1);
