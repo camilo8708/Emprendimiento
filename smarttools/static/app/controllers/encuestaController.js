@@ -55,17 +55,17 @@ app.controller("encuestaController", function ($scope, $http, sessionService, ng
     ];
 
     $scope.nextStep = function() {
-        if($scope.dynamic<10)
+        if ($scope.dynamic < 10){
             $scope.dynamic = $scope.dynamic + 2.5;
-            if($("#Text1").val() != undefined){
+            if ($("#Text1").val() != undefined) {
                 $scope.text1 = $("#Text1").val();
             }
 
-            if($("#Text2").val() != undefined){
+            if ($("#Text2").val() != undefined) {
                 $scope.text2 = $("#Text2").val();
             }
 
-        else if ($scope.dynamic==10) {
+        }else if ($scope.dynamic==10) {
             // Se guarda las respuestas
             var fd = new FormData();
             fd.append("idEncuesta", $scope.url);
