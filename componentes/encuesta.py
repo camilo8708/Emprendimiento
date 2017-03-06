@@ -3,7 +3,7 @@
 import json
 from datetime import datetime
 from django.http import HttpResponse
-from componentes.models import Encuesta, Cliente, Empresa
+from componentes.models import Encuesta, Cliente, Empresa, Empleado
 
 
 def encuesta(request, id):
@@ -13,7 +13,7 @@ def encuesta(request, id):
 
             if id == 'cx':
                 encuesta_nueva = Encuesta(fechaEnvio=datetime.now(), fechaRespuesta=datetime.now(), preguntaRecomendacion=1, preguntaExperiencia=1,
-                           primerComentario='', SegundoComentario='', estadoEncuesta = 'Pendiente', idCliente='58bad5bb30a4cf266045733f')
+                                          primerComentario='', SegundoComentario='', estadoEncuesta = 'Pendiente', idCliente='58bad5bb30a4cf266045733f')
                 encuesta_nueva.save()
                 id= encuesta_nueva.id
 
@@ -71,3 +71,47 @@ def actualizarEncuesta(request):
         except Exception as e:
             print e
             return HttpResponse(json.dumps(e.args), content_type="application/json", status=400)
+
+
+
+def queryEncuesta(request, id):
+    data = {}
+    if request.method == "GET":
+        try:
+            isAdmin = False
+            empleado= Empleado.objects.get(id=id)
+            empresa = Empresa.objects.get(id=empleado.idEmpresa)
+            cliente = Cliente.objects.filter(idEmpresa=empresa.id)
+            response_encuesta = []
+            response_encuesta_tmp = {}
+
+            for item2 in cliente:
+                  encuestas = Encuesta.objects.filter(idCliente=item2.id).order_by('-fechaEnvio')
+
+                  for item in encuestas:
+
+                    response_encuesta = []
+                    response_encuesta_tmp = {}
+                    response_encuesta_tmp['id'] = str(item.id)
+                    response_encuesta_tmp['fechaEnvio'] = str(item.fechaEnvio.strftime('%Y/%m/%d'))
+                    response_encuesta_tmp['fechaRespuesta'] = str(item.fechaRespuesta)
+                    response_encuesta_tmp['preguntaExperiencia'] = item.preguntaExperiencia
+                    response_encuesta_tmp['primerComentario'] = item.primerComentario
+                    response_encuesta_tmp['SegundoComentario'] = item.SegundoComentario
+                    response_encuesta_tmp['estadoEncuesta'] = item.estadoEncuesta
+                    response_encuesta_tmp['primerNombre'] = item2.primerNombre
+                    response_encuesta_tmp['otrosNombre'] = item2.otrosNombre
+                    response_encuesta_tmp['primerApellido'] = item2.primerApellido
+                    response_encuesta_tmp['segundoApellido'] = item2.segundoApellido
+                    response_encuesta_tmp['logo'] = empresa.logo
+                    response_encuesta_tmp['nombreEmpresa'] = empresa.nombre
+
+            response_encuesta.append(response_encuesta_tmp)
+
+
+            return HttpResponse(json.dumps(response_encuesta), content_type='application/json; charset=UTF-8')
+
+        except Exception as e:
+            return HttpResponse(json.dumps(e.args), content_type="application/json", status=400)
+
+    return HttpResponse(json.dumps(data), content_type='application/json; charset=UTF-8')
